@@ -1,6 +1,5 @@
 {
   "name": "Portfolio Professionnel",
-  "description": "Un portfolio professionnel sombre et sophistiqué pour un architecte de solutions numériques.",
-  "requestFramePermissions": [],
-  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+  "description": "Mon portfolio professionnel",
+  "requestFramePermissions": []
 }
