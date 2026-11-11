@@ -3,7 +3,7 @@ import { useParams, Link, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
 import { 
   ArrowLeft, ExternalLink, Maximize2, Monitor, Cpu, Layers, X, 
-  Calendar, Wrench, Github, Lock, Smartphone, Globe, Shield 
+  Calendar, Wrench, Github, Lock, Smartphone, Globe, Shield, FileText 
 } from 'lucide-react';
 import { projectsData } from '../data/projects';
 import { GalleryImage } from '../types';
@@ -74,12 +74,25 @@ export const ProjectDetailPage: React.FC = () => {
             <span>Retour au portfolio</span>
           </button>
           
-          <div className="flex items-center gap-2 text-xs text-neutral-500 dark:text-neutral-400">
-            <span className="hidden sm:inline">Projet</span>
-            <span className="hidden sm:inline">/</span>
-            <span className="font-semibold text-neutral-800 dark:text-neutral-200 truncate max-w-[200px] sm:max-w-none">
-              {project.title}
-            </span>
+          <div className="flex items-center gap-3">
+            <a
+              href="/chadest-cv.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Prévisualiser le CV (PDF)"
+              title="Prévisualiser le CV (PDF)"
+              className="p-2 bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-full shadow-sm hover:border-purple-500/50 hover:scale-105 text-neutral-700 dark:text-neutral-300 hover:text-purple-600 dark:hover:text-purple-400 transition-all cursor-pointer flex items-center justify-center"
+            >
+              <FileText size={18} />
+            </a>
+
+            <div className="flex items-center gap-2 text-xs text-neutral-500 dark:text-neutral-400">
+              <span className="hidden sm:inline">Projet</span>
+              <span className="hidden sm:inline">/</span>
+              <span className="font-semibold text-neutral-800 dark:text-neutral-200 truncate max-w-[150px] sm:max-w-none">
+                {project.title}
+              </span>
+            </div>
           </div>
         </div>
       </header>

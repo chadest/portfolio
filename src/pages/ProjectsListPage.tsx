@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { 
-  ArrowLeft, ArrowRight, Smartphone, Globe, Cpu, Lock, Wrench, Layers 
+  ArrowLeft, ArrowRight, Smartphone, Globe, Cpu, Lock, Wrench, Layers, FileText 
 } from 'lucide-react';
 import { projectsData } from '../data/projects';
 import { ImageWithFallback } from '../components/ImageWithFallback';
@@ -34,11 +34,25 @@ export const ProjectsListPage: React.FC = () => {
             <span>Retour à l'accueil</span>
           </button>
           
-          <span className="text-xs font-semibold uppercase tracking-wider text-purple-600 dark:text-purple-400">
-            Tous les Projets ({filteredProjects.length})
-          </span>
+          <div className="flex items-center gap-3">
+            <a
+              href="/chadest-cv.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Prévisualiser le CV (PDF)"
+              title="Prévisualiser le CV (PDF)"
+              className="p-2 bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-full shadow-sm hover:border-purple-500/50 hover:scale-105 text-neutral-700 dark:text-neutral-300 hover:text-purple-600 dark:hover:text-purple-400 transition-all cursor-pointer flex items-center justify-center"
+            >
+              <FileText size={18} />
+            </a>
+
+            <span className="text-xs font-semibold uppercase tracking-wider text-purple-600 dark:text-purple-400">
+              Tous les Projets ({filteredProjects.length})
+            </span>
+          </div>
         </div>
       </header>
+
 
       {/* Main Content */}
       <main className="max-w-6xl mx-auto px-4 sm:px-6 py-12 md:py-20">

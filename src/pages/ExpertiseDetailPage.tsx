@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
-import { ArrowLeft, Cpu, Brain, Video, CheckCircle, ExternalLink, ArrowRight } from 'lucide-react';
+import { ArrowLeft, Cpu, Brain, Video, CheckCircle, ExternalLink, ArrowRight, FileText } from 'lucide-react';
 import { expertisesData } from '../data/expertises';
 import { Footer } from '../components/Footer';
 
@@ -47,9 +47,22 @@ export const ExpertiseDetailPage: React.FC = () => {
             <span>Retour au portfolio</span>
           </button>
           
-          <span className="text-xs font-semibold uppercase tracking-wider text-neutral-500 dark:text-neutral-400">
-            {expertise.categoryName}
-          </span>
+          <div className="flex items-center gap-3">
+            <a
+              href="/chadest-cv.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Prévisualiser le CV (PDF)"
+              title="Prévisualiser le CV (PDF)"
+              className="p-2 bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-full shadow-sm hover:border-purple-500/50 hover:scale-105 text-neutral-700 dark:text-neutral-300 hover:text-purple-600 dark:hover:text-purple-400 transition-all cursor-pointer flex items-center justify-center"
+            >
+              <FileText size={18} />
+            </a>
+
+            <span className="text-xs font-semibold uppercase tracking-wider text-neutral-500 dark:text-neutral-400">
+              {expertise.categoryName}
+            </span>
+          </div>
         </div>
       </header>
 

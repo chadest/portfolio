@@ -123,12 +123,24 @@ export const HomePage: React.FC<HomePageProps> = ({ isDarkMode, setIsDarkMode })
         style={{ scaleX }} 
       />
 
-      {/* Floating Theme Switcher */}
-      <div className="fixed top-6 right-6 z-40">
+      {/* Floating Header Controls */}
+      <div className="fixed top-6 right-6 z-40 flex items-center gap-3">
+        <a
+          href="/chadest-cv.pdf"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Prévisualiser le CV (PDF)"
+          title="Prévisualiser le CV (PDF)"
+          className="p-3 bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-full shadow-lg hover:border-purple-500/50 hover:scale-105 text-neutral-700 dark:text-neutral-300 hover:text-purple-600 dark:hover:text-purple-400 transition-all cursor-pointer flex items-center justify-center"
+        >
+          <FileText size={20} />
+        </a>
+
         <button
           onClick={() => setIsDarkMode(!isDarkMode)}
-          className="p-3 bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-full shadow-lg hover:border-purple-500/50 transition-all cursor-pointer"
+          className="p-3 bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-full shadow-lg hover:border-purple-500/50 hover:scale-105 transition-all cursor-pointer"
           aria-label="Basculer le thème"
+          title="Basculer le thème"
         >
           {isDarkMode ? <Sun size={20} className="text-yellow-400" /> : <Moon size={20} className="text-neutral-700" />}
         </button>
