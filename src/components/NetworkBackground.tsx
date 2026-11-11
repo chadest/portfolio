@@ -31,7 +31,7 @@ export const NetworkBackground: React.FC<NetworkBackgroundProps> = ({ isDarkMode
     const mouse = {
       x: -1000,
       y: -1000,
-      radius: 160,
+      radius: 190,
     };
 
     const handleMouseMove = (e: MouseEvent) => {
@@ -56,22 +56,22 @@ export const NetworkBackground: React.FC<NetworkBackgroundProps> = ({ isDarkMode
     window.addEventListener('mousemove', handleMouseMove);
     window.addEventListener('mouseleave', handleMouseLeave);
 
-    // Particle density calculation
+    // High density particle mesh calculation
     let particles: Particle[] = [];
 
     const initParticles = () => {
       particles = [];
-      const particleCount = Math.floor((width * height) / 12000); // density factor
-      const maxParticles = Math.min(Math.max(particleCount, 45), 110);
+      const particleCount = Math.floor((width * height) / 5500); // Higher density
+      const maxParticles = Math.min(Math.max(particleCount, 75), 160);
 
       for (let i = 0; i < maxParticles; i++) {
         particles.push({
           x: Math.random() * width,
           y: Math.random() * height,
-          vx: (Math.random() - 0.5) * 0.8,
-          vy: (Math.random() - 0.5) * 0.8,
-          radius: Math.random() * 1.8 + 1.2,
-          baseAlpha: Math.random() * 0.5 + 0.3,
+          vx: (Math.random() - 0.5) * 0.9,
+          vy: (Math.random() - 0.5) * 0.9,
+          radius: Math.random() * 2.2 + 1.6,
+          baseAlpha: Math.random() * 0.4 + 0.5,
         });
       }
     };
@@ -79,14 +79,14 @@ export const NetworkBackground: React.FC<NetworkBackgroundProps> = ({ isDarkMode
     initParticles();
 
     // Render loop
-    const maxDistance = 140;
+    const maxDistance = 160;
 
     const render = () => {
       ctx.clearRect(0, 0, width, height);
 
-      // Colors based on theme
-      const nodeColor = isDarkMode ? '168, 85, 247' : '124, 58, 237'; // Purple-500 / Violet-600
-      const lineColor = isDarkMode ? '147, 51, 234' : '147, 51, 234'; // Purple line
+      // Vivid Purple / Indigo network colors
+      const nodeColor = isDarkMode ? '192, 132, 252' : '124, 58, 237'; // Purple-400 / Violet-600
+      const lineColor = isDarkMode ? '168, 85, 247' : '147, 51, 234'; // Purple-500
 
       // Update & draw particles
       for (let i = 0; i < particles.length; i++) {
@@ -108,11 +108,11 @@ export const NetworkBackground: React.FC<NetworkBackgroundProps> = ({ isDarkMode
         if (distMouse < mouse.radius) {
           const force = (mouse.radius - distMouse) / mouse.radius;
           const angle = Math.atan2(dyMouse, dxMouse);
-          p.x += Math.cos(angle) * force * 1.5;
-          p.y += Math.sin(angle) * force * 1.5;
+          p.x += Math.cos(angle) * force * 1.8;
+          p.y += Math.sin(angle) * force * 1.8;
         }
 
-        // Draw particle dot
+        // Draw particle dot with glow
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
         ctx.fillStyle = `rgba(${nodeColor}, ${p.baseAlpha})`;
@@ -126,24 +126,24 @@ export const NetworkBackground: React.FC<NetworkBackgroundProps> = ({ isDarkMode
           const dist = Math.sqrt(dx * dx + dy * dy);
 
           if (dist < maxDistance) {
-            const alpha = (1 - dist / maxDistance) * 0.35;
+            const alpha = (1 - dist / maxDistance) * 0.55;
             ctx.beginPath();
             ctx.moveTo(p.x, p.y);
             ctx.lineTo(p2.x, p2.y);
             ctx.strokeStyle = `rgba(${lineColor}, ${alpha})`;
-            ctx.lineWidth = 0.85;
+            ctx.lineWidth = 1.15;
             ctx.stroke();
           }
         }
 
         // Connect with mouse cursor
         if (distMouse < mouse.radius) {
-          const alpha = (1 - distMouse / mouse.radius) * 0.45;
+          const alpha = (1 - distMouse / mouse.radius) * 0.75;
           ctx.beginPath();
           ctx.moveTo(p.x, p.y);
           ctx.lineTo(mouse.x, mouse.y);
           ctx.strokeStyle = `rgba(${nodeColor}, ${alpha})`;
-          ctx.lineWidth = 1.1;
+          ctx.lineWidth = 1.5;
           ctx.stroke();
         }
       }
@@ -164,7 +164,7 @@ export const NetworkBackground: React.FC<NetworkBackgroundProps> = ({ isDarkMode
   return (
     <canvas
       ref={canvasRef}
-      className="pointer-events-none absolute inset-0 w-full h-full opacity-60 dark:opacity-75 z-0"
+      className="pointer-events-none absolute inset-0 w-full h-full opacity-90 dark:opacity-90 z-0"
     />
   );
 };
