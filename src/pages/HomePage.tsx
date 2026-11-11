@@ -13,6 +13,7 @@ import { projectsData } from '../data/projects';
 import { expertisesData } from '../data/expertises';
 import { ImageWithFallback } from '../components/ImageWithFallback';
 import { Footer } from '../components/Footer';
+import { NetworkBackground } from '../components/NetworkBackground';
 
 const TypewriterText = ({ text, speed = 15 }: { text: string; speed?: number }) => {
   const [displayedText, setDisplayedText] = useState("");
@@ -112,7 +113,10 @@ export const HomePage: React.FC<HomePageProps> = ({ isDarkMode, setIsDarkMode })
   });
 
   return (
-    <div className="min-h-screen bg-neutral-50 dark:bg-neutral-950 text-neutral-900 dark:text-neutral-100 transition-colors duration-300 font-sans selection:bg-purple-500 selection:text-white">
+    <div className="min-h-screen bg-neutral-50 dark:bg-neutral-950 text-neutral-900 dark:text-neutral-100 transition-colors duration-300 font-sans selection:bg-purple-500 selection:text-white relative overflow-hidden">
+      {/* Animated Network Mesh Background */}
+      <NetworkBackground isDarkMode={isDarkMode} />
+
       {/* Scroll indicator */}
       <motion.div 
         className="fixed top-0 left-0 right-0 h-1 bg-purple-600 origin-left z-50"
@@ -130,7 +134,7 @@ export const HomePage: React.FC<HomePageProps> = ({ isDarkMode, setIsDarkMode })
         </button>
       </div>
 
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12 md:py-20 space-y-24">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12 md:py-20 space-y-24 relative z-10">
         {/* Hero Section */}
         <header className="flex flex-col md:flex-row items-center gap-8 md:gap-12 text-center md:text-left pt-6">
           <div className="relative group shrink-0">
@@ -149,7 +153,7 @@ export const HomePage: React.FC<HomePageProps> = ({ isDarkMode, setIsDarkMode })
               Espérance Chadrac TCHIDI
             </p>
             <p className="text-base sm:text-lg text-neutral-600 dark:text-neutral-400 font-light mb-6">
-              Architecte de solutions numériques & Ingénieur systèmes embarqués
+              Étudiant & Développeur Systèmes Embarqués, IoT & IA
             </p>
 
             <div className="flex flex-wrap items-center justify-center md:justify-start gap-4">

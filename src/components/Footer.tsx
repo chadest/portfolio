@@ -66,7 +66,7 @@ export const Footer: React.FC = () => {
           &copy; {currentYear} Espérance Chadrac TCHIDI. Tous droits réservés.
         </p>
         <p className="text-xs text-neutral-500 dark:text-neutral-500">
-          Chades't Creative • Architecte de Solutions Numériques & Ingénieur Systèmes Embarqués
+          Chades't Creative • Étudiant & Développeur Systèmes Embarqués, IoT & IA
         </p>
       </div>
     </footer>
