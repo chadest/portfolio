@@ -83,9 +83,6 @@ export const Footer: React.FC = () => {
         <p className="font-semibold text-neutral-800 dark:text-neutral-200 text-xs sm:text-sm">
           &copy; {currentYear} Espérance Chadrac TCHIDI. Tous droits réservés.
         </p>
-        <p className="text-[10px] sm:text-xs text-neutral-500 dark:text-neutral-400 leading-relaxed">
-          Chades't Creative • Étudiant & Développeur Systèmes Embarqués, IoT & IA
-        </p>
         <div className="pt-1 flex items-center justify-center gap-3 text-xs font-medium">
           <Link to="/" className="text-neutral-600 dark:text-neutral-400 hover:text-purple-600 dark:hover:text-purple-400 transition-colors">
             Accueil
