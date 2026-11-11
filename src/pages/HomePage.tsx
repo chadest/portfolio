@@ -51,10 +51,10 @@ const TypewriterText = ({ text, speed = 15 }: { text: string; speed?: number }) 
   }, [index, text, speed, hasStarted]);
 
   return (
-    <p ref={elementRef} className="text-neutral-700 dark:text-neutral-300 text-lg leading-relaxed min-h-[120px] md:min-h-[80px]">
+    <p ref={elementRef} className="text-neutral-700 dark:text-neutral-300 text-base sm:text-lg leading-relaxed min-h-[100px] sm:min-h-[80px]">
       {displayedText}
       {hasStarted && index < text.length && (
-        <span className="inline-block w-1.5 h-5 ml-1 bg-blue-500 animate-pulse align-middle" />
+        <span className="inline-block w-1.5 h-4 sm:h-5 ml-1 bg-purple-500 animate-pulse align-middle" />
       )}
     </p>
   );
@@ -123,71 +123,71 @@ export const HomePage: React.FC<HomePageProps> = ({ isDarkMode, setIsDarkMode })
         style={{ scaleX }} 
       />
 
-      {/* Floating Header Controls */}
-      <div className="fixed top-6 right-6 z-40 flex items-center gap-3">
+      {/* Floating Header Controls - Responsive mobile & desktop */}
+      <div className="fixed top-3 right-3 sm:top-6 sm:right-6 z-40 flex items-center gap-2 sm:gap-3">
         <a
           href="/chadest-cv.pdf"
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Prévisualiser le CV (PDF)"
           title="Prévisualiser le CV (PDF)"
-          className="p-3 bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-full shadow-lg hover:border-purple-500/50 hover:scale-105 text-neutral-700 dark:text-neutral-300 hover:text-purple-600 dark:hover:text-purple-400 transition-all cursor-pointer flex items-center justify-center"
+          className="p-2.5 sm:p-3 bg-white/90 dark:bg-neutral-900/90 backdrop-blur-md border border-neutral-200 dark:border-neutral-800 rounded-full shadow-lg hover:border-purple-500/50 hover:scale-105 text-neutral-700 dark:text-neutral-300 hover:text-purple-600 dark:hover:text-purple-400 transition-all cursor-pointer flex items-center justify-center shrink-0"
         >
-          <FileText size={20} />
+          <FileText className="w-4 h-4 sm:w-5 sm:h-5" />
         </a>
 
         <button
           onClick={() => setIsDarkMode(!isDarkMode)}
-          className="p-3 bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-full shadow-lg hover:border-purple-500/50 hover:scale-105 transition-all cursor-pointer"
+          className="p-2.5 sm:p-3 bg-white/90 dark:bg-neutral-900/90 backdrop-blur-md border border-neutral-200 dark:border-neutral-800 rounded-full shadow-lg hover:border-purple-500/50 hover:scale-105 transition-all cursor-pointer flex items-center justify-center shrink-0"
           aria-label="Basculer le thème"
           title="Basculer le thème"
         >
-          {isDarkMode ? <Sun size={20} className="text-yellow-400" /> : <Moon size={20} className="text-neutral-700" />}
+          {isDarkMode ? <Sun className="w-4 h-4 sm:w-5 sm:h-5 text-yellow-400" /> : <Moon className="w-4 h-4 sm:w-5 sm:h-5 text-neutral-700" />}
         </button>
       </div>
 
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12 md:py-20 space-y-24 relative z-10">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 py-8 sm:py-16 md:py-20 space-y-12 sm:space-y-20 md:space-y-24 relative z-10">
         {/* Hero Section */}
-        <header className="flex flex-col md:flex-row items-center gap-8 md:gap-12 text-center md:text-left pt-6">
+        <header className="flex flex-col md:flex-row items-center gap-6 sm:gap-8 md:gap-12 text-center md:text-left pt-2 sm:pt-6">
           <div className="relative group shrink-0">
             <img 
               src={profileImage} 
               alt="Espérance Chadrac TCHIDI" 
-              className="w-44 h-44 sm:w-52 sm:h-52 rounded-full object-cover border-4 border-purple-500/80 shadow-2xl" 
+              className="w-32 h-32 sm:w-44 sm:h-44 md:w-52 md:h-52 rounded-full object-cover border-4 border-purple-500/80 shadow-2xl transition-transform duration-300 group-hover:scale-105" 
             />
           </div>
 
-          <div className="flex-grow">
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight mb-3">
+          <div className="flex-grow w-full">
+            <h1 className="text-3xl sm:text-5xl md:text-6xl font-extrabold tracking-tight mb-2 sm:mb-3">
               Chades't Creative
             </h1>
-            <p className="text-xl sm:text-2xl text-purple-600 dark:text-purple-400 font-medium mb-1">
+            <p className="text-lg sm:text-2xl text-purple-600 dark:text-purple-400 font-semibold mb-1">
               Espérance Chadrac TCHIDI
             </p>
-            <p className="text-base sm:text-lg text-neutral-600 dark:text-neutral-400 font-light mb-6">
+            <p className="text-sm sm:text-lg text-neutral-600 dark:text-neutral-400 font-light mb-6">
               Étudiant & Développeur Systèmes Embarqués, IoT & IA
             </p>
 
-            <div className="flex flex-wrap items-center justify-center md:justify-start gap-4">
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center md:justify-start gap-3 sm:gap-4 w-full">
               <a 
                 href="mailto:chadractchidi58@gmail.com"
-                className="px-6 py-3 bg-purple-600 hover:bg-purple-700 text-white rounded-xl font-medium transition-all shadow-md hover:shadow-purple-500/25 flex items-center gap-2"
+                className="w-full sm:w-auto px-5 sm:px-6 py-3 bg-purple-600 hover:bg-purple-700 text-white rounded-xl font-medium transition-all shadow-md hover:shadow-purple-500/25 flex items-center justify-center gap-2 text-sm sm:text-base"
               >
-                <Mail size={18} /> Me contacter
+                <Mail className="w-4 h-4 sm:w-5 sm:h-5" /> Me contacter
               </a>
               <a 
                 href="#projets"
-                className="px-6 py-3 bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 hover:border-purple-500/50 rounded-xl font-medium transition-all flex items-center gap-2"
+                className="w-full sm:w-auto px-5 sm:px-6 py-3 bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 hover:border-purple-500/50 rounded-xl font-medium transition-all flex items-center justify-center gap-2 text-sm sm:text-base"
               >
-                <Layers size={18} /> Voir mes projets ({projectsData.length})
+                <Layers className="w-4 h-4 sm:w-5 sm:h-5" /> Voir mes projets ({projectsData.length})
               </a>
             </div>
           </div>
         </header>
 
         {/* À propos */}
-        <section className="bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-3xl p-8 sm:p-12 shadow-sm">
-          <h2 className="text-2xl font-bold border-l-4 border-purple-500 pl-4 mb-6">À propos</h2>
+        <section className="bg-white/90 dark:bg-neutral-900/90 backdrop-blur-sm border border-neutral-200 dark:border-neutral-800 rounded-2xl sm:rounded-3xl p-5 sm:p-8 md:p-12 shadow-sm">
+          <h2 className="text-xl sm:text-2xl font-bold border-l-4 border-purple-500 pl-3 sm:pl-4 mb-4 sm:mb-6">À propos</h2>
           <TypewriterText 
             text="Passionné par l'innovation technologique, je conçois des systèmes embarqués connectés, des applications mobiles Android et des plateformes web avancées. Mon approche allie rigueur matérielle et ingénierie logicielle pour donner vie à des solutions performantes." 
             speed={15} 
@@ -196,19 +196,19 @@ export const HomePage: React.FC<HomePageProps> = ({ isDarkMode, setIsDarkMode })
 
         {/* Section Projets - Full Page Routing */}
         <section id="projets" className="scroll-mt-24">
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8 border-l-4 border-purple-500 pl-4">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6 sm:mb-8 border-l-4 border-purple-500 pl-3 sm:pl-4">
             <div>
-              <h2 className="text-3xl font-bold tracking-tight">Projets & Réalisations</h2>
-              <p className="text-neutral-600 dark:text-neutral-400 text-sm mt-1">
+              <h2 className="text-2xl sm:text-3xl font-bold tracking-tight">Projets & Réalisations</h2>
+              <p className="text-neutral-600 dark:text-neutral-400 text-xs sm:text-sm mt-1">
                 Cliquez sur un projet pour accéder à sa page complète (descriptions, captures et photos réelles)
               </p>
             </div>
 
-            {/* Filter buttons */}
-            <div className="flex items-center gap-1.5 p-1 bg-white dark:bg-neutral-900 rounded-2xl border border-neutral-200 dark:border-neutral-800 text-xs">
+            {/* Filter buttons - horizontal scrollable on mobile */}
+            <div className="flex items-center gap-1.5 p-1 bg-white dark:bg-neutral-900 rounded-xl sm:rounded-2xl border border-neutral-200 dark:border-neutral-800 text-xs overflow-x-auto max-w-full pb-0.5 shrink-0">
               <button
                 onClick={() => setProjectFilter('all')}
-                className={`px-3 py-1.5 rounded-xl font-medium transition-all cursor-pointer ${
+                className={`px-3 py-1.5 rounded-lg sm:rounded-xl font-medium transition-all cursor-pointer whitespace-nowrap ${
                   projectFilter === 'all'
                     ? 'bg-purple-600 text-white shadow-sm'
                     : 'text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white'
@@ -218,7 +218,7 @@ export const HomePage: React.FC<HomePageProps> = ({ isDarkMode, setIsDarkMode })
               </button>
               <button
                 onClick={() => setProjectFilter('web-android')}
-                className={`px-3 py-1.5 rounded-xl font-medium transition-all cursor-pointer ${
+                className={`px-3 py-1.5 rounded-lg sm:rounded-xl font-medium transition-all cursor-pointer whitespace-nowrap ${
                   projectFilter === 'web-android'
                     ? 'bg-purple-600 text-white shadow-sm'
                     : 'text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white'
@@ -228,7 +228,7 @@ export const HomePage: React.FC<HomePageProps> = ({ isDarkMode, setIsDarkMode })
               </button>
               <button
                 onClick={() => setProjectFilter('embed')}
-                className={`px-3 py-1.5 rounded-xl font-medium transition-all cursor-pointer ${
+                className={`px-3 py-1.5 rounded-lg sm:rounded-xl font-medium transition-all cursor-pointer whitespace-nowrap ${
                   projectFilter === 'embed'
                     ? 'bg-purple-600 text-white shadow-sm'
                     : 'text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white'
@@ -239,14 +239,14 @@ export const HomePage: React.FC<HomePageProps> = ({ isDarkMode, setIsDarkMode })
             </div>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
             {filteredProjects.map((project) => (
               <Link
                 key={project.id}
                 to={`/projets/${project.id}`}
-                className="bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-3xl p-6 sm:p-8 hover:border-purple-500/60 hover:shadow-xl transition-all flex flex-col group relative cursor-pointer"
+                className="bg-white/95 dark:bg-neutral-900/95 backdrop-blur-sm border border-neutral-200 dark:border-neutral-800 rounded-2xl sm:rounded-3xl p-5 sm:p-8 hover:border-purple-500/60 hover:shadow-xl transition-all flex flex-col group relative cursor-pointer"
               >
-                <div className="aspect-video w-full mb-6 overflow-hidden rounded-2xl bg-neutral-950 relative">
+                <div className="aspect-video w-full mb-4 sm:mb-6 overflow-hidden rounded-xl sm:rounded-2xl bg-neutral-950 relative">
                   <ImageWithFallback
                     src={project.image}
                     fallbackSrc={project.gallery?.[0]}
@@ -254,91 +254,91 @@ export const HomePage: React.FC<HomePageProps> = ({ isDarkMode, setIsDarkMode })
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
                   {project.galleryItems && (
-                    <span className="absolute top-3 right-3 px-2.5 py-1 rounded-md text-[11px] font-bold bg-black/75 backdrop-blur-md text-white border border-white/10 flex items-center gap-1.5">
-                      <Layers size={13} />
-                      {project.galleryItems.length} photos & captures
+                    <span className="absolute top-3 right-3 px-2 sm:px-2.5 py-1 rounded-md text-[10px] sm:text-[11px] font-bold bg-black/75 backdrop-blur-md text-white border border-white/10 flex items-center gap-1 sm:gap-1.5">
+                      <Layers className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
+                      {project.galleryItems.length} photos
                     </span>
                   )}
                   {project.isPrivate && (
-                    <span className="absolute bottom-3 left-3 px-2.5 py-1 rounded-md text-[11px] font-medium bg-black/80 backdrop-blur-md text-amber-300 border border-amber-500/30 flex items-center gap-1">
-                      <Lock size={12} /> Code Privé
+                    <span className="absolute bottom-3 left-3 px-2 sm:px-2.5 py-1 rounded-md text-[10px] sm:text-[11px] font-medium bg-black/80 backdrop-blur-md text-amber-300 border border-amber-500/30 flex items-center gap-1">
+                      <Lock className="w-3 h-3" /> Code Privé
                     </span>
                   )}
                 </div>
 
-                <div className="flex flex-wrap items-center gap-2 mb-2.5">
+                <div className="flex flex-wrap items-center gap-2 mb-2">
                   {project.platform && (
-                    <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-md bg-blue-500/10 text-blue-600 dark:text-blue-400 text-[11px] font-semibold">
-                      {project.platform === 'Android' ? <Smartphone size={11} /> : <Globe size={11} />}
+                    <span className="inline-flex items-center gap-1 px-2 sm:px-2.5 py-0.5 rounded-md bg-blue-500/10 text-blue-600 dark:text-blue-400 text-[10px] sm:text-[11px] font-semibold">
+                      {project.platform === 'Android' ? <Smartphone className="w-3 h-3" /> : <Globe className="w-3 h-3" />}
                       {project.platform}
                     </span>
                   )}
                   {project.status && (
-                    <span className="inline-flex items-center px-2 py-0.5 rounded-md bg-amber-500/10 text-amber-600 dark:text-amber-400 text-[11px] font-medium">
+                    <span className="inline-flex items-center px-2 py-0.5 rounded-md bg-amber-500/10 text-amber-600 dark:text-amber-400 text-[10px] sm:text-[11px] font-medium">
                       {project.status}
                     </span>
                   )}
-                  <span className="text-xs font-semibold text-purple-600 dark:text-purple-400 ml-auto">
+                  <span className="text-[11px] sm:text-xs font-semibold text-purple-600 dark:text-purple-400 ml-auto">
                     {project.tech}
                   </span>
                 </div>
 
-                <h3 className="text-2xl font-bold mb-3 group-hover:text-purple-500 transition-colors">
+                <h3 className="text-xl sm:text-2xl font-bold mb-2 sm:mb-3 group-hover:text-purple-500 transition-colors">
                   {project.title}
                 </h3>
 
-                <p className="text-neutral-600 dark:text-neutral-400 text-sm leading-relaxed mb-6 flex-grow">
+                <p className="text-neutral-600 dark:text-neutral-400 text-xs sm:text-sm leading-relaxed mb-4 sm:mb-6 flex-grow">
                   {project.desc}
                 </p>
 
-                <div className="pt-4 border-t border-neutral-100 dark:border-neutral-800 flex items-center justify-between text-sm font-semibold text-neutral-900 dark:text-neutral-100 group-hover:text-purple-500 transition-colors">
+                <div className="pt-3 sm:pt-4 border-t border-neutral-100 dark:border-neutral-800 flex items-center justify-between text-xs sm:text-sm font-semibold text-neutral-900 dark:text-neutral-100 group-hover:text-purple-500 transition-colors">
                   <span>Accéder à la page complète</span>
-                  <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+                  <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" />
                 </div>
               </Link>
             ))}
           </div>
         </section>
 
-        {/* Domaines d'Expertise - Pages complètes dédiées */}
+        {/* Domaines d'Expertise */}
         <section>
-          <div className="mb-8 border-l-4 border-purple-500 pl-4">
-            <h2 className="text-3xl font-bold tracking-tight">Domaines d'Expertise</h2>
-            <p className="text-neutral-600 dark:text-neutral-400 text-sm mt-1">
-              Explorez mes spécialités techniques détaillées (pages complètes dédiées)
+          <div className="mb-6 sm:mb-8 border-l-4 border-purple-500 pl-3 sm:pl-4">
+            <h2 className="text-2xl sm:text-3xl font-bold tracking-tight">Domaines d'Expertise</h2>
+            <p className="text-neutral-600 dark:text-neutral-400 text-xs sm:text-sm mt-1">
+              Explorez mes spécialités techniques détaillées
             </p>
           </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
             {expertisesData.map((exp) => (
               <Link
                 key={exp.id}
                 to={`/expertise/${exp.id}`}
-                className="p-8 bg-white dark:bg-neutral-900 rounded-3xl border border-neutral-200 dark:border-neutral-800 hover:border-purple-500/50 hover:shadow-lg transition-all flex flex-col justify-between group cursor-pointer"
+                className="p-6 sm:p-8 bg-white/95 dark:bg-neutral-900/95 backdrop-blur-sm rounded-2xl sm:rounded-3xl border border-neutral-200 dark:border-neutral-800 hover:border-purple-500/50 hover:shadow-lg transition-all flex flex-col justify-between group cursor-pointer"
               >
                 <div>
-                  <div className="w-12 h-12 rounded-2xl bg-purple-500/10 text-purple-600 dark:text-purple-400 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                    {exp.id === 'systemes-embarques' && <Cpu size={24} className="text-orange-500" />}
-                    {exp.id === 'ia-vision' && <Brain size={24} className="text-pink-500" />}
-                    {exp.id === 'design-media' && <Video size={24} className="text-purple-500" />}
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl bg-purple-500/10 text-purple-600 dark:text-purple-400 flex items-center justify-center mb-4 sm:mb-6 group-hover:scale-110 transition-transform">
+                    {exp.id === 'systemes-embarques' && <Cpu className="w-5 h-5 sm:w-6 sm:h-6 text-orange-500" />}
+                    {exp.id === 'ia-vision' && <Brain className="w-5 h-5 sm:w-6 sm:h-6 text-pink-500" />}
+                    {exp.id === 'design-media' && <Video className="w-5 h-5 sm:w-6 sm:h-6 text-purple-500" />}
                   </div>
 
-                  <span className="text-xs font-semibold uppercase tracking-wider text-neutral-500 dark:text-neutral-400">
+                  <span className="text-[10px] sm:text-xs font-semibold uppercase tracking-wider text-neutral-500 dark:text-neutral-400">
                     {exp.categoryName}
                   </span>
 
-                  <h3 className="text-xl font-bold mt-1 mb-3 group-hover:text-purple-500 transition-colors">
+                  <h3 className="text-lg sm:text-xl font-bold mt-1 mb-2 sm:mb-3 group-hover:text-purple-500 transition-colors">
                     {exp.title}
                   </h3>
 
-                  <p className="text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed mb-6">
+                  <p className="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed mb-4 sm:mb-6">
                     {exp.desc}
                   </p>
                 </div>
 
-                <div className="pt-4 border-t border-neutral-100 dark:border-neutral-800 flex items-center justify-between text-xs font-bold uppercase tracking-wider text-purple-600 dark:text-purple-400">
+                <div className="pt-3 sm:pt-4 border-t border-neutral-100 dark:border-neutral-800 flex items-center justify-between text-[11px] sm:text-xs font-bold uppercase tracking-wider text-purple-600 dark:text-purple-400">
                   <span>En savoir plus</span>
-                  <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+                  <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 group-hover:translate-x-1 transition-transform" />
                 </div>
               </Link>
             ))}
@@ -346,22 +346,22 @@ export const HomePage: React.FC<HomePageProps> = ({ isDarkMode, setIsDarkMode })
         </section>
 
         {/* Compétences Techniques */}
-        <section className="bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-3xl p-8 sm:p-12 shadow-sm">
-          <h2 className="text-2xl font-bold border-l-4 border-purple-500 pl-4 mb-8">Compétences Techniques</h2>
-          <div className="space-y-6">
+        <section className="bg-white/95 dark:bg-neutral-900/95 backdrop-blur-sm border border-neutral-200 dark:border-neutral-800 rounded-2xl sm:rounded-3xl p-5 sm:p-8 md:p-12 shadow-sm">
+          <h2 className="text-xl sm:text-2xl font-bold border-l-4 border-purple-500 pl-3 sm:pl-4 mb-6 sm:mb-8">Compétences Techniques</h2>
+          <div className="space-y-4 sm:space-y-6">
             {techStack.map((tech, index) => (
               <div 
                 key={index}
                 onClick={() => setSelectedTech(selectedTech === index ? null : index)}
                 className="cursor-pointer group"
               >
-                <div className="flex justify-between items-center mb-2">
-                  <span className="font-semibold text-neutral-800 dark:text-neutral-200 group-hover:text-purple-500 transition-colors">
+                <div className="flex justify-between items-center mb-1.5 sm:mb-2">
+                  <span className="text-xs sm:text-base font-semibold text-neutral-800 dark:text-neutral-200 group-hover:text-purple-500 transition-colors">
                     {tech.name}
                   </span>
-                  <span className="text-sm font-medium text-neutral-500 dark:text-neutral-400">{tech.level}%</span>
+                  <span className="text-xs sm:text-sm font-medium text-neutral-500 dark:text-neutral-400 ml-2">{tech.level}%</span>
                 </div>
-                <div className="w-full h-2.5 bg-neutral-100 dark:bg-neutral-800 rounded-full overflow-hidden">
+                <div className="w-full h-2 sm:h-2.5 bg-neutral-100 dark:bg-neutral-800 rounded-full overflow-hidden">
                   <motion.div 
                     initial={{ width: 0 }}
                     whileInView={{ width: `${tech.level}%` }}
@@ -376,34 +376,34 @@ export const HomePage: React.FC<HomePageProps> = ({ isDarkMode, setIsDarkMode })
         </section>
 
         {/* Expériences & Formations */}
-        <section className="grid md:grid-cols-2 gap-8">
+        <section className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
           {/* Expériences */}
-          <div className="bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-3xl p-8 shadow-sm">
-            <h2 className="text-2xl font-bold border-l-4 border-purple-500 pl-4 mb-6">Expériences</h2>
-            <div className="space-y-6">
+          <div className="bg-white/95 dark:bg-neutral-900/95 backdrop-blur-sm border border-neutral-200 dark:border-neutral-800 rounded-2xl sm:rounded-3xl p-5 sm:p-8 shadow-sm">
+            <h2 className="text-xl sm:text-2xl font-bold border-l-4 border-purple-500 pl-3 sm:pl-4 mb-5 sm:mb-6">Expériences</h2>
+            <div className="space-y-5 sm:space-y-6">
               {experiences.map((exp, i) => (
-                <div key={i} className="border-b border-neutral-100 dark:border-neutral-800 pb-5 last:border-b-0 last:pb-0">
-                  <h3 className="text-lg font-bold text-neutral-900 dark:text-neutral-100">{exp.role}</h3>
-                  <p className="text-purple-600 dark:text-purple-400 text-sm font-medium mb-1">{exp.company}</p>
-                  <p className="text-sm text-neutral-600 dark:text-neutral-400">{exp.desc}</p>
+                <div key={i} className="border-b border-neutral-100 dark:border-neutral-800 pb-4 sm:pb-5 last:border-b-0 last:pb-0">
+                  <h3 className="text-base sm:text-lg font-bold text-neutral-900 dark:text-neutral-100">{exp.role}</h3>
+                  <p className="text-purple-600 dark:text-purple-400 text-xs sm:text-sm font-medium mb-1">{exp.company}</p>
+                  <p className="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400">{exp.desc}</p>
                 </div>
               ))}
             </div>
           </div>
 
           {/* Formations */}
-          <div className="bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-3xl p-8 shadow-sm">
-            <h2 className="text-2xl font-bold border-l-4 border-purple-500 pl-4 mb-6">Formations & Diplômes</h2>
-            <div className="space-y-6">
+          <div className="bg-white/95 dark:bg-neutral-900/95 backdrop-blur-sm border border-neutral-200 dark:border-neutral-800 rounded-2xl sm:rounded-3xl p-5 sm:p-8 shadow-sm">
+            <h2 className="text-xl sm:text-2xl font-bold border-l-4 border-purple-500 pl-3 sm:pl-4 mb-5 sm:mb-6">Formations & Diplômes</h2>
+            <div className="space-y-5 sm:space-y-6">
               {formations.map((f, i) => (
-                <div key={i} className="border-b border-neutral-100 dark:border-neutral-800 pb-5 last:border-b-0 last:pb-0">
-                  <div className="flex items-center justify-between gap-2 mb-1">
-                    <h3 className="text-lg font-bold text-neutral-900 dark:text-neutral-100">{f.title}</h3>
-                    <span className="text-xs px-2.5 py-1 rounded-full bg-purple-500/10 text-purple-600 dark:text-purple-400 font-semibold shrink-0">
+                <div key={i} className="border-b border-neutral-100 dark:border-neutral-800 pb-4 sm:pb-5 last:border-b-0 last:pb-0">
+                  <div className="flex flex-wrap items-center justify-between gap-2 mb-1">
+                    <h3 className="text-base sm:text-lg font-bold text-neutral-900 dark:text-neutral-100">{f.title}</h3>
+                    <span className="text-[10px] sm:text-xs px-2.5 py-0.5 sm:py-1 rounded-full bg-purple-500/10 text-purple-600 dark:text-purple-400 font-semibold shrink-0">
                       {f.period}
                     </span>
                   </div>
-                  <p className="text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">{f.desc}</p>
+                  <p className="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">{f.desc}</p>
                 </div>
               ))}
             </div>
@@ -411,26 +411,26 @@ export const HomePage: React.FC<HomePageProps> = ({ isDarkMode, setIsDarkMode })
         </section>
 
         {/* Contact direct */}
-        <section className="bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-3xl p-8 sm:p-12 text-center">
-          <h2 className="text-3xl font-bold mb-4">Un projet en tête ?</h2>
-          <p className="text-neutral-600 dark:text-neutral-400 max-w-xl mx-auto mb-8 text-base">
-            Je suis disponible pour des missions d'ingénierie en systèmes embarqués, IoT, vision artificielle et développement d'applications.
+        <section className="bg-white/95 dark:bg-neutral-900/95 backdrop-blur-sm border border-neutral-200 dark:border-neutral-800 rounded-2xl sm:rounded-3xl p-6 sm:p-12 text-center">
+          <h2 className="text-2xl sm:text-3xl font-bold mb-3 sm:mb-4">Un projet en tête ?</h2>
+          <p className="text-neutral-600 dark:text-neutral-400 max-w-xl mx-auto mb-6 sm:mb-8 text-xs sm:text-base">
+            Je suis disponible pour des missions en systèmes embarqués, IoT, vision artificielle et développement d'applications.
           </p>
 
-          <div className="flex flex-wrap items-center justify-center gap-4">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 w-full max-w-md sm:max-w-none mx-auto">
             <a 
               href="mailto:chadractchidi58@gmail.com"
-              className="px-8 py-3.5 bg-purple-600 hover:bg-purple-700 text-white rounded-xl font-medium transition-all shadow-md flex items-center gap-2"
+              className="w-full sm:w-auto px-6 py-3 sm:py-3.5 bg-purple-600 hover:bg-purple-700 text-white rounded-xl font-medium transition-all shadow-md flex items-center justify-center gap-2 text-xs sm:text-sm"
             >
-              <Mail size={18} /> chadractchidi58@gmail.com
+              <Mail className="w-4 h-4 sm:w-5 sm:h-5" /> chadractchidi58@gmail.com
             </a>
             <a 
               href="https://www.linkedin.com/in/chadractchidi" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="px-6 py-3.5 bg-neutral-100 dark:bg-neutral-800 hover:bg-neutral-200 dark:hover:bg-neutral-700 rounded-xl font-medium transition-colors flex items-center gap-2"
+              className="w-full sm:w-auto px-6 py-3 sm:py-3.5 bg-neutral-100 dark:bg-neutral-800 hover:bg-neutral-200 dark:hover:bg-neutral-700 rounded-xl font-medium transition-colors flex items-center justify-center gap-2 text-xs sm:text-sm"
             >
-              <Linkedin size={18} /> LinkedIn
+              <Linkedin className="w-4 h-4 sm:w-5 sm:h-5" /> LinkedIn
             </a>
           </div>
         </section>
