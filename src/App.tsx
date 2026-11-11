@@ -9,6 +9,7 @@ import { HomePage } from './pages/HomePage';
 import { ProjectDetailPage } from './pages/ProjectDetailPage';
 import { ProjectsListPage } from './pages/ProjectsListPage';
 import { ExpertiseDetailPage } from './pages/ExpertiseDetailPage';
+import { ContactPage } from './pages/ContactPage';
 
 export default function App() {
   const [isDarkMode, setIsDarkMode] = useState(true);
@@ -40,6 +41,10 @@ export default function App() {
         <Route 
           path="/expertise/:id" 
           element={<ExpertiseDetailPage />} 
+        />
+        <Route 
+          path="/contact" 
+          element={<ContactPage isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode} />} 
         />
         <Route 
           path="*" 

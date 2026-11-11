@@ -36,6 +36,13 @@ export const ProjectsListPage: React.FC = () => {
           </button>
           
           <div className="flex items-center gap-2 sm:gap-3 shrink-0">
+            <Link
+              to="/contact"
+              className="text-xs sm:text-sm font-medium text-neutral-600 dark:text-neutral-400 hover:text-purple-600 dark:hover:text-purple-400 transition-colors px-2 py-1 rounded-lg"
+            >
+              Contact
+            </Link>
+
             <a
               href="/chadest-cv.pdf"
               target="_blank"
@@ -138,12 +145,6 @@ export const ProjectsListPage: React.FC = () => {
                     </span>
                   )}
                 </div>
-
-                {project.galleryItems && (
-                  <span className="absolute bottom-2.5 right-2.5 sm:bottom-3 sm:right-3 px-2 sm:px-2.5 py-1 rounded-md text-[10px] sm:text-[11px] font-semibold bg-black/75 backdrop-blur-md text-white border border-white/10">
-                    {project.galleryItems.length} photos
-                  </span>
-                )}
               </div>
 
               <div className="flex items-center gap-2 mb-2">

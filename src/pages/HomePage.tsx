@@ -169,17 +169,17 @@ export const HomePage: React.FC<HomePageProps> = ({ isDarkMode, setIsDarkMode })
             </p>
 
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center md:justify-start gap-3 sm:gap-4 w-full">
-              <a 
-                href="mailto:chadractchidi58@gmail.com"
+              <Link 
+                to="/contact"
                 className="w-full sm:w-auto px-5 sm:px-6 py-3 bg-purple-600 hover:bg-purple-700 text-white rounded-xl font-medium transition-all shadow-md hover:shadow-purple-500/25 flex items-center justify-center gap-2 text-sm sm:text-base"
               >
                 <Mail className="w-4 h-4 sm:w-5 sm:h-5" /> Me contacter
-              </a>
+              </Link>
               <a 
                 href="#projets"
                 className="w-full sm:w-auto px-5 sm:px-6 py-3 bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 hover:border-purple-500/50 rounded-xl font-medium transition-all flex items-center justify-center gap-2 text-sm sm:text-base"
               >
-                <Layers className="w-4 h-4 sm:w-5 sm:h-5" /> Voir mes projets ({projectsData.length})
+                <Layers className="w-4 h-4 sm:w-5 sm:h-5" /> Voir mes projets
               </a>
             </div>
           </div>
@@ -199,9 +199,6 @@ export const HomePage: React.FC<HomePageProps> = ({ isDarkMode, setIsDarkMode })
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6 sm:mb-8 border-l-4 border-purple-500 pl-3 sm:pl-4">
             <div>
               <h2 className="text-2xl sm:text-3xl font-bold tracking-tight">Projets & Réalisations</h2>
-              <p className="text-neutral-600 dark:text-neutral-400 text-xs sm:text-sm mt-1">
-                Cliquez sur un projet pour accéder à sa page complète (descriptions, captures et photos réelles)
-              </p>
             </div>
 
             {/* Filter buttons - horizontal scrollable on mobile */}
@@ -418,12 +415,12 @@ export const HomePage: React.FC<HomePageProps> = ({ isDarkMode, setIsDarkMode })
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 w-full max-w-md sm:max-w-none mx-auto">
-            <a 
-              href="mailto:chadractchidi58@gmail.com"
+            <Link 
+              to="/contact"
               className="w-full sm:w-auto px-6 py-3 sm:py-3.5 bg-purple-600 hover:bg-purple-700 text-white rounded-xl font-medium transition-all shadow-md flex items-center justify-center gap-2 text-xs sm:text-sm"
             >
-              <Mail className="w-4 h-4 sm:w-5 sm:h-5" /> chadractchidi58@gmail.com
-            </a>
+              <Mail className="w-4 h-4 sm:w-5 sm:h-5" /> Me contacter / Envoyer un message
+            </Link>
             <a 
               href="https://www.linkedin.com/in/chadractchidi" 
               target="_blank" 

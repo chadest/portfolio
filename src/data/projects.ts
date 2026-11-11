@@ -91,7 +91,7 @@ export const projectsData: Project[] = [
   },
   {
     id: "silatran",
-    title: "Silatran — Traducteur Langue des Signes (LSF)",
+    title: "Silatran — Traducteur Langue des Signes",
     tech: "TypeScript, React, Three.js, MediaPipe, OpenCV",
     platform: "Web",
     status: "Prototype partiel",
