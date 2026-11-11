@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { ArrowLeft, Cpu, Brain, Video, CheckCircle, ExternalLink, ArrowRight } from 'lucide-react';
 import { expertisesData } from '../data/expertises';
+import { Footer } from '../components/Footer';
 
 export const ExpertiseDetailPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -165,6 +166,8 @@ export const ExpertiseDetailPage: React.FC = () => {
               ))}
           </div>
         </section>
+
+        <Footer />
       </main>
     </div>
   );

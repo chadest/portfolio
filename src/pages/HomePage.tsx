@@ -5,13 +5,14 @@ import {
   Mail, Linkedin, Github, Code, Cpu, Video, FileText, Download, 
   ExternalLink, Send, ArrowRight, Facebook, MessageCircle, Moon, Sun, 
   Brain, Youtube, GraduationCap, ChevronRight, Layers, Sparkles,
-  Lock, Smartphone, Globe, Monitor, Wifi, CircuitBoard 
+  Lock, Smartphone, Globe
 } from 'lucide-react';
 
 import profileImage from '../assets/images/moi.png';
 import { projectsData } from '../data/projects';
 import { expertisesData } from '../data/expertises';
 import { ImageWithFallback } from '../components/ImageWithFallback';
+import { Footer } from '../components/Footer';
 
 const TypewriterText = ({ text, speed = 15 }: { text: string; speed?: number }) => {
   const [displayedText, setDisplayedText] = useState("");
@@ -77,55 +78,6 @@ export const HomePage: React.FC<HomePageProps> = ({ isDarkMode, setIsDarkMode })
     { role: "Stagiaire", company: "Compagnie Béninoise des Textiles (CBT)", desc: "Stage d'immersion professionnelle." },
     { role: "Électricité Bâtiment", company: "Hévie", desc: "Installation et maintenance de circuits électriques." },
     { role: "Informatique de gestion", company: "CACOM", desc: "Assistance en informatique de gestion." },
-  ];
-
-  // Cartes de développement & Matériel embarqué
-  const hardwareCards = [
-    {
-      name: "Arduino Uno",
-      category: "Microcontrôleur AVR & Prototypage",
-      specs: "ATmega328P • 16 MHz • 14 E/S numériques • 6 PWM • 6 entrées ADC",
-      badge: "Arduino",
-      colorTag: "text-teal-600 dark:text-teal-400 bg-teal-500/10 border-teal-500/20",
-      desc: "Idéale pour le maquettage rapide, le pilotage d'actionneurs, la régulation et l'apprentissage des microcontrôleurs.",
-      icon: Cpu,
-    },
-    {
-      name: "Arduino Nano",
-      category: "Format Miniature & Breadboard",
-      specs: "ATmega328P • Facteur compact 18x45 mm • Mini-USB • 8 entrées ADC",
-      badge: "Compact",
-      colorTag: "text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 border-emerald-500/20",
-      desc: "Conçue pour les boîtiers à encombrement réduit, le montage direct sur platine et les circuits imprimés sur mesure.",
-      icon: CircuitBoard,
-    },
-    {
-      name: "ESP32",
-      category: "SoC 32-bit Dual-Core IoT",
-      specs: "Tensilica Xtensa 240 MHz • Wi-Fi 802.11 b/g/n • Bluetooth 4.2 BLE • FreeRTOS",
-      badge: "Wi-Fi & BLE",
-      colorTag: "text-orange-600 dark:text-orange-400 bg-orange-500/10 border-orange-500/20",
-      desc: "Connectivité sans fil native, serveurs web embarqués, acquisition haute fréquence (PZEM-004T) et télémétrie cloud.",
-      icon: Wifi,
-    },
-    {
-      name: "AI-Pi Uno",
-      category: "Edge AI & IA Embarquée",
-      specs: "Architecture hybride • Accélération inférence • Logique périphérique Edge Computing",
-      badge: "Edge AI",
-      colorTag: "text-purple-600 dark:text-purple-400 bg-purple-500/10 border-purple-500/20",
-      desc: "Calcul intelligent embarqué pour le traitement local de données sensorielles et la prise de décision autonome.",
-      icon: Brain,
-    },
-    {
-      name: "Écran LCD TFT 2.4\"",
-      category: "Afficheur Graphique & IHM",
-      specs: "Résolution 240x320 px • 65K couleurs RVB • Bus SPI / Parallèle • Contrôleur ILI9341",
-      badge: "Affichage IHM",
-      colorTag: "text-blue-600 dark:text-blue-400 bg-blue-500/10 border-blue-500/20",
-      desc: "Conception d'interfaces graphiques interactives, graphiques de tendance, jauges d'énergie et tableaux de bord embarqués.",
-      icon: Monitor,
-    },
   ];
 
   const techStack = [
@@ -377,64 +329,6 @@ export const HomePage: React.FC<HomePageProps> = ({ isDarkMode, setIsDarkMode })
           </div>
         </section>
 
-        {/* Cartes de Développement & Matériel Embarqué */}
-        <section className="bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-3xl p-8 sm:p-12 shadow-sm">
-          <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
-            <div className="border-l-4 border-purple-500 pl-4">
-              <h2 className="text-2xl sm:text-3xl font-bold tracking-tight">Cartes de Développement & Matériel</h2>
-              <p className="text-neutral-600 dark:text-neutral-400 text-sm mt-1">
-                Microcontrôleurs, cartes spécialisées et afficheurs graphiques au cœur de mes réalisations embarquées.
-              </p>
-            </div>
-            <Link
-              to="/expertise/systemes-embarques"
-              className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-purple-600 dark:text-purple-400 hover:underline shrink-0"
-            >
-              <span>Voir l'expertise embarquée</span>
-              <ArrowRight size={14} />
-            </Link>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {hardwareCards.map((hw, idx) => {
-              const IconComp = hw.icon;
-              return (
-                <div
-                  key={idx}
-                  className="p-6 rounded-2xl bg-neutral-50 dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-800 hover:border-purple-500/40 transition-all flex flex-col justify-between"
-                >
-                  <div>
-                    <div className="flex items-center justify-between mb-4">
-                      <div className="w-10 h-10 rounded-xl bg-purple-500/10 text-purple-600 dark:text-purple-400 flex items-center justify-center">
-                        <IconComp size={20} />
-                      </div>
-                      <span className={`text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-md border ${hw.colorTag}`}>
-                        {hw.badge}
-                      </span>
-                    </div>
-
-                    <h3 className="text-lg font-bold text-neutral-900 dark:text-neutral-100 mb-1">
-                      {hw.name}
-                    </h3>
-                    <p className="text-xs font-medium text-neutral-500 dark:text-neutral-400 mb-3">
-                      {hw.category}
-                    </p>
-                    <p className="text-xs text-neutral-600 dark:text-neutral-400 leading-relaxed mb-4">
-                      {hw.desc}
-                    </p>
-                  </div>
-
-                  <div className="pt-3 border-t border-neutral-200/70 dark:border-neutral-800/80">
-                    <span className="text-[11px] font-mono text-neutral-500 dark:text-neutral-400 block leading-tight">
-                      {hw.specs}
-                    </span>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </section>
-
         {/* Compétences Techniques */}
         <section className="bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-3xl p-8 sm:p-12 shadow-sm">
           <h2 className="text-2xl font-bold border-l-4 border-purple-500 pl-4 mb-8">Compétences Techniques</h2>
@@ -526,13 +420,7 @@ export const HomePage: React.FC<HomePageProps> = ({ isDarkMode, setIsDarkMode })
         </section>
 
         {/* Footer */}
-        <footer className="pt-8 border-t border-neutral-200 dark:border-neutral-800 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-neutral-500 dark:text-neutral-400">
-          <p>&copy; {new Date().getFullYear()} Espérance Chadrac TCHIDI. Tous droits réservés.</p>
-          <div className="flex items-center gap-4">
-            <a href="mailto:chadractchidi58@gmail.com" className="hover:text-purple-500 transition-colors">Email</a>
-            <a href="https://www.linkedin.com/in/chadractchidi" target="_blank" rel="noopener noreferrer" className="hover:text-purple-500 transition-colors">LinkedIn</a>
-          </div>
-        </footer>
+        <Footer />
       </div>
     </div>
   );

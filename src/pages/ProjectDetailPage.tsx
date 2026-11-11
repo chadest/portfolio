@@ -8,6 +8,7 @@ import {
 import { projectsData } from '../data/projects';
 import { GalleryImage } from '../types';
 import { ImageWithFallback } from '../components/ImageWithFallback';
+import { Footer } from '../components/Footer';
 
 export const ProjectDetailPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -294,6 +295,8 @@ export const ProjectDetailPage: React.FC = () => {
               ))}
           </div>
         </section>
+
+        <Footer />
       </main>
 
       {/* Lightbox / Fullscreen Viewer */}

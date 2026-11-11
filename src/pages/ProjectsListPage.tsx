@@ -5,6 +5,7 @@ import {
 } from 'lucide-react';
 import { projectsData } from '../data/projects';
 import { ImageWithFallback } from '../components/ImageWithFallback';
+import { Footer } from '../components/Footer';
 
 export const ProjectsListPage: React.FC = () => {
   const navigate = useNavigate();
@@ -152,6 +153,8 @@ export const ProjectsListPage: React.FC = () => {
             </Link>
           ))}
         </div>
+
+        <Footer />
       </main>
     </div>
   );
