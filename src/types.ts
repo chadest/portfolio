@@ -11,6 +11,7 @@ export interface Project {
   tech: string;
   desc: string;
   fullDesc: string;
+  advantages?: string[];
   link?: string;
   isPrivate?: boolean;
   status?: string; // e.g. "Prototype partiel", "Projet finalisé", "En développement"

@@ -81,11 +81,11 @@ export const HomePage: React.FC<HomePageProps> = ({ isDarkMode, setIsDarkMode })
     { role: "Informatique de gestion", company: "CACOM", desc: "Assistance en informatique de gestion." },
   ];
 
-  const techStack = [
+  const techStack: { name: string; level: number; icon?: string }[] = [
     { name: "Systèmes Embarqués (Arduino & ESP32)", level: 90 },
     { name: "C / C++ (Micrologiciel & Firmware)", level: 85 },
     { name: "IHM Graphique (Écran LCD TFT 2.4\")", level: 80 },
-    { name: "Simulation de Circuits (Proteus)", level: 85 },
+    { name: "Simulation de Circuits (Proteus)", level: 85, icon: "/assets/aistudio/image_ee75663d.png" },
     { name: "Edge AI & IA Embarquée (AI-Pi Uno)", level: 80 },
     { name: "Python & Computer Vision (OpenCV)", level: 75 },
     { name: "React, TypeScript & Tailwind CSS", level: 80 },
@@ -111,6 +111,13 @@ export const HomePage: React.FC<HomePageProps> = ({ isDarkMode, setIsDarkMode })
     if (projectFilter === 'web-android') return p.platform === 'Web' || p.platform === 'Android' || p.platform === 'Logiciel';
     return true;
   });
+
+  const fadeInUpProps = {
+    initial: { opacity: 0, y: 24 },
+    whileInView: { opacity: 1, y: 0 },
+    viewport: { once: true, amount: 0.15 as const },
+    transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] as const }
+  };
 
   return (
     <div className="min-h-screen bg-neutral-50 dark:bg-neutral-950 text-neutral-900 dark:text-neutral-100 transition-colors duration-300 font-sans selection:bg-purple-500 selection:text-white relative overflow-hidden">
@@ -148,14 +155,24 @@ export const HomePage: React.FC<HomePageProps> = ({ isDarkMode, setIsDarkMode })
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 py-8 sm:py-16 md:py-20 space-y-12 sm:space-y-20 md:space-y-24 relative z-10">
         {/* Hero Section */}
-        <header className="flex flex-col md:flex-row items-center gap-6 sm:gap-8 md:gap-12 text-center md:text-left pt-2 sm:pt-6">
-          <div className="relative group shrink-0">
+        <motion.header
+          initial={{ opacity: 0, y: 18 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          className="flex flex-col md:flex-row items-center gap-6 sm:gap-8 md:gap-12 text-center md:text-left pt-2 sm:pt-6"
+        >
+          <motion.div
+            initial={{ opacity: 0, scale: 0.92 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.6, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+            className="relative group shrink-0"
+          >
             <img 
               src={profileImage} 
               alt="Espérance Chadrac TCHIDI" 
               className="w-32 h-32 sm:w-44 sm:h-44 md:w-52 md:h-52 rounded-full object-cover border-4 border-purple-500/80 shadow-2xl transition-transform duration-300 group-hover:scale-105" 
             />
-          </div>
+          </motion.div>
 
           <div className="flex-grow w-full">
             <h1 className="text-3xl sm:text-5xl md:text-6xl font-extrabold tracking-tight mb-2 sm:mb-3">
@@ -183,20 +200,26 @@ export const HomePage: React.FC<HomePageProps> = ({ isDarkMode, setIsDarkMode })
               </a>
             </div>
           </div>
-        </header>
+        </motion.header>
 
         {/* À propos */}
-        <section className="bg-white/90 dark:bg-neutral-900/90 backdrop-blur-sm border border-neutral-200 dark:border-neutral-800 rounded-2xl sm:rounded-3xl p-5 sm:p-8 md:p-12 shadow-sm">
+        <motion.section
+          {...fadeInUpProps}
+          className="bg-white/90 dark:bg-neutral-900/90 backdrop-blur-sm border border-neutral-200 dark:border-neutral-800 rounded-2xl sm:rounded-3xl p-5 sm:p-8 md:p-12 shadow-sm"
+        >
           <h2 className="text-xl sm:text-2xl font-bold border-l-4 border-purple-500 pl-3 sm:pl-4 mb-4 sm:mb-6">À propos</h2>
           <TypewriterText 
             text="Passionné par l'innovation technologique, je conçois des systèmes embarqués connectés, des applications mobiles Android et des plateformes web avancées. Mon approche allie rigueur matérielle et ingénierie logicielle pour donner vie à des solutions performantes." 
             speed={15} 
           />
-        </section>
+        </motion.section>
 
         {/* Section Projets - Full Page Routing */}
         <section id="projets" className="scroll-mt-24">
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6 sm:mb-8 border-l-4 border-purple-500 pl-3 sm:pl-4">
+          <motion.div
+            {...fadeInUpProps}
+            className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6 sm:mb-8 border-l-4 border-purple-500 pl-3 sm:pl-4"
+          >
             <div>
               <h2 className="text-2xl sm:text-3xl font-bold tracking-tight">Projets & Réalisations</h2>
             </div>
@@ -234,107 +257,124 @@ export const HomePage: React.FC<HomePageProps> = ({ isDarkMode, setIsDarkMode })
                 Systèmes Embarqués
               </button>
             </div>
-          </div>
+          </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
-            {filteredProjects.map((project) => (
-              <Link
+            {filteredProjects.map((project, index) => (
+              <motion.div
                 key={project.id}
-                to={`/projets/${project.id}`}
-                className="bg-white/95 dark:bg-neutral-900/95 backdrop-blur-sm border border-neutral-200 dark:border-neutral-800 rounded-2xl sm:rounded-3xl p-5 sm:p-8 hover:border-purple-500/60 hover:shadow-xl transition-all flex flex-col group relative cursor-pointer"
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.12 }}
+                transition={{ duration: 0.45, delay: Math.min((index % 2) * 0.1, 0.2), ease: [0.22, 1, 0.36, 1] }}
+                className="flex"
               >
-                <div className="aspect-video w-full mb-4 sm:mb-6 overflow-hidden rounded-xl sm:rounded-2xl bg-neutral-950 relative">
-                  <ImageWithFallback
-                    src={project.image}
-                    fallbackSrc={project.gallery?.[0]}
-                    alt={project.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  />
-                  {project.isPrivate && (
-                    <span className="absolute bottom-3 left-3 px-2 sm:px-2.5 py-1 rounded-md text-[10px] sm:text-[11px] font-medium bg-black/80 backdrop-blur-md text-amber-300 border border-amber-500/30 flex items-center gap-1">
-                      <Lock className="w-3 h-3" /> Code Privé
-                    </span>
-                  )}
-                </div>
+                <Link
+                  to={`/projets/${project.id}`}
+                  className="w-full bg-white/95 dark:bg-neutral-900/95 backdrop-blur-sm border border-neutral-200 dark:border-neutral-800 rounded-2xl sm:rounded-3xl p-5 sm:p-8 hover:border-purple-500/60 hover:shadow-xl transition-all flex flex-col group relative cursor-pointer"
+                >
+                  <div className="aspect-video w-full mb-4 sm:mb-6 overflow-hidden rounded-xl sm:rounded-2xl bg-neutral-950 relative">
+                    <ImageWithFallback
+                      src={project.image}
+                      fallbackSrc={project.gallery?.[0]}
+                      alt={project.title}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                  </div>
 
-                <div className="flex flex-wrap items-center gap-2 mb-2">
-                  {project.platform && (
-                    <span className="inline-flex items-center gap-1 px-2 sm:px-2.5 py-0.5 rounded-md bg-blue-500/10 text-blue-600 dark:text-blue-400 text-[10px] sm:text-[11px] font-semibold">
-                      {project.platform === 'Android' ? <Smartphone className="w-3 h-3" /> : <Globe className="w-3 h-3" />}
-                      {project.platform}
-                    </span>
-                  )}
-                  {project.status && (
-                    <span className="inline-flex items-center px-2 py-0.5 rounded-md bg-amber-500/10 text-amber-600 dark:text-amber-400 text-[10px] sm:text-[11px] font-medium">
-                      {project.status}
-                    </span>
-                  )}
-                </div>
+                  <div className="flex flex-wrap items-center gap-2 mb-2">
+                    {project.platform && (
+                      <span className="inline-flex items-center gap-1 px-2 sm:px-2.5 py-0.5 rounded-md bg-blue-500/10 text-blue-600 dark:text-blue-400 text-[10px] sm:text-[11px] font-semibold">
+                        {project.platform === 'Android' ? <Smartphone className="w-3 h-3" /> : <Globe className="w-3 h-3" />}
+                        {project.platform}
+                      </span>
+                    )}
+                    {project.status && (
+                      <span className="inline-flex items-center px-2 py-0.5 rounded-md bg-amber-500/10 text-amber-600 dark:text-amber-400 text-[10px] sm:text-[11px] font-medium">
+                        {project.status}
+                      </span>
+                    )}
+                  </div>
 
-                <h3 className="text-xl sm:text-2xl font-bold mb-2 sm:mb-3 group-hover:text-purple-500 transition-colors">
-                  {project.title}
-                </h3>
+                  <h3 className="text-xl sm:text-2xl font-bold mb-2 sm:mb-3 group-hover:text-purple-500 transition-colors">
+                    {project.title}
+                  </h3>
 
-                <p className="text-neutral-600 dark:text-neutral-400 text-xs sm:text-sm leading-relaxed mb-4 sm:mb-6 flex-grow">
-                  {project.desc}
-                </p>
+                  <p className="text-neutral-600 dark:text-neutral-400 text-xs sm:text-sm leading-relaxed mb-4 sm:mb-6 flex-grow">
+                    {project.desc}
+                  </p>
 
-                <div className="pt-3 sm:pt-4 border-t border-neutral-100 dark:border-neutral-800 flex items-center justify-between text-xs sm:text-sm font-semibold text-neutral-900 dark:text-neutral-100 group-hover:text-purple-500 transition-colors">
-                  <span>Accéder à la page complète</span>
-                  <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" />
-                </div>
-              </Link>
+                  <div className="pt-3 sm:pt-4 border-t border-neutral-100 dark:border-neutral-800 flex items-center justify-between text-xs sm:text-sm font-semibold text-neutral-900 dark:text-neutral-100 group-hover:text-purple-500 transition-colors">
+                    <span>Accéder à la page complète</span>
+                    <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" />
+                  </div>
+                </Link>
+              </motion.div>
             ))}
           </div>
         </section>
 
         {/* Domaines d'Expertise */}
         <section>
-          <div className="mb-6 sm:mb-8 border-l-4 border-purple-500 pl-3 sm:pl-4">
+          <motion.div
+            {...fadeInUpProps}
+            className="mb-6 sm:mb-8 border-l-4 border-purple-500 pl-3 sm:pl-4"
+          >
             <h2 className="text-2xl sm:text-3xl font-bold tracking-tight">Domaines d'Expertise</h2>
             <p className="text-neutral-600 dark:text-neutral-400 text-xs sm:text-sm mt-1">
               Explorez mes spécialités techniques détaillées
             </p>
-          </div>
+          </motion.div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
-            {expertisesData.map((exp) => (
-              <Link
+            {expertisesData.map((exp, idx) => (
+              <motion.div
                 key={exp.id}
-                to={`/expertise/${exp.id}`}
-                className="p-6 sm:p-8 bg-white/95 dark:bg-neutral-900/95 backdrop-blur-sm rounded-2xl sm:rounded-3xl border border-neutral-200 dark:border-neutral-800 hover:border-purple-500/50 hover:shadow-lg transition-all flex flex-col justify-between group cursor-pointer"
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.15 }}
+                transition={{ duration: 0.45, delay: idx * 0.1, ease: [0.22, 1, 0.36, 1] }}
+                className="flex"
               >
-                <div>
-                  <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl bg-purple-500/10 text-purple-600 dark:text-purple-400 flex items-center justify-center mb-4 sm:mb-6 group-hover:scale-110 transition-transform">
-                    {exp.id === 'systemes-embarques' && <Cpu className="w-5 h-5 sm:w-6 sm:h-6 text-orange-500" />}
-                    {exp.id === 'ia-vision' && <Brain className="w-5 h-5 sm:w-6 sm:h-6 text-pink-500" />}
-                    {exp.id === 'design-media' && <Video className="w-5 h-5 sm:w-6 sm:h-6 text-purple-500" />}
+                <Link
+                  to={`/expertise/${exp.id}`}
+                  className="w-full p-6 sm:p-8 bg-white/95 dark:bg-neutral-900/95 backdrop-blur-sm rounded-2xl sm:rounded-3xl border border-neutral-200 dark:border-neutral-800 hover:border-purple-500/50 hover:shadow-lg transition-all flex flex-col justify-between group cursor-pointer"
+                >
+                  <div>
+                    <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl bg-purple-500/10 text-purple-600 dark:text-purple-400 flex items-center justify-center mb-4 sm:mb-6 group-hover:scale-110 transition-transform">
+                      {exp.id === 'systemes-embarques' && <Cpu className="w-5 h-5 sm:w-6 sm:h-6 text-orange-500" />}
+                      {exp.id === 'ia-vision' && <Brain className="w-5 h-5 sm:w-6 sm:h-6 text-pink-500" />}
+                      {exp.id === 'design-media' && <Video className="w-5 h-5 sm:w-6 sm:h-6 text-purple-500" />}
+                    </div>
+
+                    <span className="text-[10px] sm:text-xs font-semibold uppercase tracking-wider text-neutral-500 dark:text-neutral-400">
+                      {exp.categoryName}
+                    </span>
+
+                    <h3 className="text-lg sm:text-xl font-bold mt-1 mb-2 sm:mb-3 group-hover:text-purple-500 transition-colors">
+                      {exp.title}
+                    </h3>
+
+                    <p className="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed mb-4 sm:mb-6">
+                      {exp.desc}
+                    </p>
                   </div>
 
-                  <span className="text-[10px] sm:text-xs font-semibold uppercase tracking-wider text-neutral-500 dark:text-neutral-400">
-                    {exp.categoryName}
-                  </span>
-
-                  <h3 className="text-lg sm:text-xl font-bold mt-1 mb-2 sm:mb-3 group-hover:text-purple-500 transition-colors">
-                    {exp.title}
-                  </h3>
-
-                  <p className="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed mb-4 sm:mb-6">
-                    {exp.desc}
-                  </p>
-                </div>
-
-                <div className="pt-3 sm:pt-4 border-t border-neutral-100 dark:border-neutral-800 flex items-center justify-between text-[11px] sm:text-xs font-bold uppercase tracking-wider text-purple-600 dark:text-purple-400">
-                  <span>En savoir plus</span>
-                  <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 group-hover:translate-x-1 transition-transform" />
-                </div>
-              </Link>
+                  <div className="pt-3 sm:pt-4 border-t border-neutral-100 dark:border-neutral-800 flex items-center justify-between text-[11px] sm:text-xs font-bold uppercase tracking-wider text-purple-600 dark:text-purple-400">
+                    <span>En savoir plus</span>
+                    <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 group-hover:translate-x-1 transition-transform" />
+                  </div>
+                </Link>
+              </motion.div>
             ))}
           </div>
         </section>
 
         {/* Compétences Techniques */}
-        <section className="bg-white/95 dark:bg-neutral-900/95 backdrop-blur-sm border border-neutral-200 dark:border-neutral-800 rounded-2xl sm:rounded-3xl p-5 sm:p-8 md:p-12 shadow-sm">
+        <motion.section
+          {...fadeInUpProps}
+          className="bg-white/95 dark:bg-neutral-900/95 backdrop-blur-sm border border-neutral-200 dark:border-neutral-800 rounded-2xl sm:rounded-3xl p-5 sm:p-8 md:p-12 shadow-sm"
+        >
           <h2 className="text-xl sm:text-2xl font-bold border-l-4 border-purple-500 pl-3 sm:pl-4 mb-6 sm:mb-8">Compétences Techniques</h2>
           <div className="space-y-4 sm:space-y-6">
             {techStack.map((tech, index) => (
@@ -344,7 +384,14 @@ export const HomePage: React.FC<HomePageProps> = ({ isDarkMode, setIsDarkMode })
                 className="cursor-pointer group"
               >
                 <div className="flex justify-between items-center mb-1.5 sm:mb-2">
-                  <span className="text-xs sm:text-base font-semibold text-neutral-800 dark:text-neutral-200 group-hover:text-purple-500 transition-colors">
+                  <span className="inline-flex items-center gap-2 text-xs sm:text-base font-semibold text-neutral-800 dark:text-neutral-200 group-hover:text-purple-500 transition-colors">
+                    {tech.icon && (
+                      <img
+                        src={tech.icon}
+                        alt={tech.name}
+                        className="w-4 h-4 sm:w-5 sm:h-5 object-contain shrink-0"
+                      />
+                    )}
                     {tech.name}
                   </span>
                   <span className="text-xs sm:text-sm font-medium text-neutral-500 dark:text-neutral-400 ml-2">{tech.level}%</span>
@@ -361,12 +408,15 @@ export const HomePage: React.FC<HomePageProps> = ({ isDarkMode, setIsDarkMode })
               </div>
             ))}
           </div>
-        </section>
+        </motion.section>
 
         {/* Expériences & Formations */}
         <section className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
           {/* Expériences */}
-          <div className="bg-white/95 dark:bg-neutral-900/95 backdrop-blur-sm border border-neutral-200 dark:border-neutral-800 rounded-2xl sm:rounded-3xl p-5 sm:p-8 shadow-sm">
+          <motion.div
+            {...fadeInUpProps}
+            className="bg-white/95 dark:bg-neutral-900/95 backdrop-blur-sm border border-neutral-200 dark:border-neutral-800 rounded-2xl sm:rounded-3xl p-5 sm:p-8 shadow-sm"
+          >
             <h2 className="text-xl sm:text-2xl font-bold border-l-4 border-purple-500 pl-3 sm:pl-4 mb-5 sm:mb-6">Expériences</h2>
             <div className="space-y-5 sm:space-y-6">
               {experiences.map((exp, i) => (
@@ -377,10 +427,16 @@ export const HomePage: React.FC<HomePageProps> = ({ isDarkMode, setIsDarkMode })
                 </div>
               ))}
             </div>
-          </div>
+          </motion.div>
 
           {/* Formations */}
-          <div className="bg-white/95 dark:bg-neutral-900/95 backdrop-blur-sm border border-neutral-200 dark:border-neutral-800 rounded-2xl sm:rounded-3xl p-5 sm:p-8 shadow-sm">
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.15 }}
+            transition={{ duration: 0.55, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+            className="bg-white/95 dark:bg-neutral-900/95 backdrop-blur-sm border border-neutral-200 dark:border-neutral-800 rounded-2xl sm:rounded-3xl p-5 sm:p-8 shadow-sm"
+          >
             <h2 className="text-xl sm:text-2xl font-bold border-l-4 border-purple-500 pl-3 sm:pl-4 mb-5 sm:mb-6">Formations & Diplômes</h2>
             <div className="space-y-5 sm:space-y-6">
               {formations.map((f, i) => (
@@ -395,11 +451,14 @@ export const HomePage: React.FC<HomePageProps> = ({ isDarkMode, setIsDarkMode })
                 </div>
               ))}
             </div>
-          </div>
+          </motion.div>
         </section>
 
         {/* Contact direct */}
-        <section className="bg-white/95 dark:bg-neutral-900/95 backdrop-blur-sm border border-neutral-200 dark:border-neutral-800 rounded-2xl sm:rounded-3xl p-6 sm:p-12 text-center">
+        <motion.section
+          {...fadeInUpProps}
+          className="bg-white/95 dark:bg-neutral-900/95 backdrop-blur-sm border border-neutral-200 dark:border-neutral-800 rounded-2xl sm:rounded-3xl p-6 sm:p-12 text-center"
+        >
           <h2 className="text-2xl sm:text-3xl font-bold mb-3 sm:mb-4">Un projet en tête ?</h2>
           <p className="text-neutral-600 dark:text-neutral-400 max-w-xl mx-auto mb-6 sm:mb-8 text-xs sm:text-base">
             Je suis disponible pour des missions en systèmes embarqués, IoT, vision artificielle et développement d'applications.
@@ -421,10 +480,12 @@ export const HomePage: React.FC<HomePageProps> = ({ isDarkMode, setIsDarkMode })
               <Linkedin className="w-4 h-4 sm:w-5 sm:h-5" /> LinkedIn
             </a>
           </div>
-        </section>
+        </motion.section>
 
         {/* Footer */}
-        <Footer />
+        <motion.div {...fadeInUpProps}>
+          <Footer />
+        </motion.div>
       </div>
     </div>
   );

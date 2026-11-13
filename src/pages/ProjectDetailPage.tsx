@@ -3,7 +3,7 @@ import { useParams, Link, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
 import { 
   ArrowLeft, ArrowRight, ExternalLink, Maximize2, Monitor, Cpu, Layers, X, 
-  Calendar, Wrench, Github, Lock, Smartphone, Globe, Shield, FileText 
+  Calendar, Wrench, Github, Lock, Smartphone, Globe, Shield, FileText, CheckCircle2 
 } from 'lucide-react';
 import { projectsData } from '../data/projects';
 import { GalleryImage } from '../types';
@@ -134,7 +134,7 @@ export const ProjectDetailPage: React.FC = () => {
               {project.isPrivate ? (
                 <div className="inline-flex items-center gap-2 px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-xl bg-neutral-200/80 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 text-xs font-medium border border-neutral-300 dark:border-neutral-700">
                   <Lock className="w-3.5 h-3.5 text-amber-500 shrink-0" />
-                  <span>Code source propriétaire (Dépôt GitHub privé)</span>
+                  <span>Code source propriétaire </span>
                 </div>
               ) : (
                 <a
@@ -183,6 +183,25 @@ export const ProjectDetailPage: React.FC = () => {
           <div className="text-neutral-700 dark:text-neutral-300 leading-relaxed text-sm sm:text-base md:text-lg">
             <p>{project.fullDesc}</p>
           </div>
+
+          {project.advantages && project.advantages.length > 0 && (
+            <div className="mt-6 sm:mt-8 pt-6 border-t border-neutral-100 dark:border-neutral-800">
+              <h3 className="text-base sm:text-lg font-bold mb-3 sm:mb-4 text-neutral-900 dark:text-neutral-100">
+                Avantages clés
+              </h3>
+              <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                {project.advantages.map((advantage, idx) => (
+                  <li
+                    key={idx}
+                    className="flex items-start gap-2.5 p-3 rounded-xl bg-neutral-50 dark:bg-neutral-950 border border-neutral-200/70 dark:border-neutral-800 text-xs sm:text-sm text-neutral-700 dark:text-neutral-300 leading-relaxed"
+                  >
+                    <CheckCircle2 className="w-4 h-4 text-purple-600 dark:text-purple-400 shrink-0 mt-0.5" />
+                    <span>{advantage}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
         </section>
 
         {/* Gallery Section */}
@@ -258,11 +277,7 @@ export const ProjectDetailPage: React.FC = () => {
                       } group-hover:scale-105 transition-transform duration-500`}
                     />
                     
-                    {item.category && item.category !== 'all' && (
-                      <span className="absolute top-2.5 left-2.5 px-2 py-0.5 rounded-md text-[10px] font-bold uppercase tracking-wider bg-black/75 backdrop-blur-md text-white border border-white/10">
-                        {item.category === 'web' ? 'Interface Web' : 'Matériel / Circuit'}
-                      </span>
-                    )}
+                   
 
                     <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-1.5 text-white">
                       <Maximize2 className="w-4 h-4" />

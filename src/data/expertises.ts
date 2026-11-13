@@ -12,7 +12,7 @@ export const expertisesData: ExpertiseItem[] = [
       { name: "Arduino IDE", iconUrl: "https://cdn.simpleicons.org/arduino/00979D" },
       { name: "PlatformIO", iconUrl: "https://cdn.simpleicons.org/platformio/F5822A" },
       { name: "C / C++", iconUrl: "https://cdn.simpleicons.org/cplusplus/00599C" },
-      { name: "Simulation Proteus", badgeText: "Proteus" }
+      { name: "Simulation Proteus", iconUrl: "/assets/aistudio/image_ee75663d.png" }
     ],
     hardwareOrDetails: [
       {

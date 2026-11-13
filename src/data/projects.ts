@@ -1,14 +1,12 @@
 import { Project } from '../types';
+import stationMeteoHardware from '../assets/images/station_meteo_clean_1794587052652.jpg';
+import stationMeteoUI from '../assets/images/meteo_monitoring_dashboard_1794587292361.jpg';
 
 const arrosageImg = "https://images.unsplash.com/photo-1616348436168-de43ad0db179?auto=format&fit=crop&w=800&q=80";
 const stationMeteoImg = "https://images.unsplash.com/photo-1534088568595-a066f410bcda?auto=format&fit=crop&w=800&q=80";
-const adjagbeImg = "https://images.unsplash.com/photo-1596436889106-be35e843f974?auto=format&fit=crop&w=800&q=80";
 
-const architopoCover = "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80";
-const architopoPlan = "https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1200&q=80";
-
-const morsignCover = "https://images.unsplash.com/photo-1516245834210-c4c142787335?auto=format&fit=crop&w=1200&q=80";
-const morsignSignal = "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=1200&q=80";
+const morsignCover = "/assets/aistudio/image_15f282f2.png";
+const morsignSignal = "/assets/aistudio/image_b1c3180b.png";
 
 const eya3dCover = "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&q=80";
 const eya3dMesh = "https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?auto=format&fit=crop&w=1200&q=80";
@@ -21,11 +19,17 @@ export const projectsData: Project[] = [
     platform: "Système Embarqué",
     status: "Projet finalisé",
     desc: "Système complet de mesure électrique et télémétrie web en temps réel avec boîtier IP64 et afficheur LCD.",
-    fullDesc: "Conception et réalisation intégrale d'un compteur d'énergie électrique connecté. Le système embarqué utilise un microcontrôleur ESP32 et un module de mesure PZEM-004T pour échantillonner en temps réel la tension (227.9V), le courant (0.02A), la puissance active (W), la fréquence réseau (49.37 Hz) et le facteur de puissance (cos φ 0.740). L'ensemble est intégré dans un coffret étanche IP64 avec afficheur LCD local et transmission Wi-Fi vers une interface web dynamique permettant le suivi énergétique en direct, le calcul instantané du coût en FCFA (tarif 200 FCFA/kWh) et la notification d'alertes.",
-    image: "./compteur/IMG_20260507_183822_477.jpg",
+    fullDesc: "Projet de soutenance portant sur la conception et la réalisation intégrale d'un compteur d'énergie électrique intelligent et connecté. Basé sur un microcontrôleur ESP32 couplé à un module de mesure PZEM-004T et à un relais de pilotage, le système est intégré dans un coffret étanche IP64 muni d'un afficheur LCD local. Il assure l'acquisition continue des données de consommation et leur transmission en Wi-Fi vers une interface web dynamique dédiée au suivi énergétique, à l'estimation des coûts en FCFA et à la gestion des alertes.",
+    advantages: [
+      "Suivi en temps réel de la consommation énergétique et estimation instantanée du coût en FCFA",
+      "Détection précoce des anomalies électriques (sous-tension, surintensité et faible facteur de puissance cos φ)",
+      "Supervision à distance via Wi-Fi depuis une interface web dédiée et lecture locale sur écran LCD",
+      "Sécurisation matérielle avec boîtier étanche IP64 et coupure de charge pilotée par relais"
+    ],
+    image: "./compteur/IMG_20260514_162717_773.jpg",
     gallery: [
-      "./compteur/IMG_20260507_183822_477.jpg",
       "./compteur/IMG_20260514_162717_773.jpg",
+      "./compteur/IMG_20260507_183822_477.jpg",
       "./compteur/IMG_20260514_154547_392 (1).jpg",
       "./compteur/Screenshot_20260509-141342 (2).jpg",
       "./compteur/Screenshot_20260509-070522 (1).jpg",
@@ -34,22 +38,22 @@ export const projectsData: Project[] = [
     galleryItems: [
       {
         url: "./compteur/Screenshot_20260509-141342 (2).jpg",
-        title: "Interface Web : Tableau de bord principal (Tension 227.9V, Courant 0.02A)",
+        title: "Interface Web : Tableau de bord principal de suivi",
         category: "web"
       },
       {
         url: "./compteur/Screenshot_20260509-070522 (1).jpg",
-        title: "Interface Web : Fréquence (49.37 Hz), courbe sinusoïdale & alerte facteur de puissance",
+        title: "Interface Web : Courbe sinusoïdale & alerte facteur de puissance",
         category: "web"
       },
       {
         url: "./compteur/Screenshot_20260509-170842 (1).jpg",
-        title: "Interface Web : Suivi tarifaire (200 FCFA/kWh), coût d'énergie & alertes",
+        title: "Interface Web : Suivi tarifaire, estimation du coût & alertes",
         category: "web"
       },
       {
         url: "./compteur/IMG_20260514_162717_773.jpg",
-        title: "Boîtier IP64 finalisé avec afficheur LCD en fonctionnement (227.9V / 0.02A / 1.0W)",
+        title: "Boîtier IP64 finalisé avec afficheur LCD en fonctionnement",
         category: "hardware"
       },
       {
@@ -65,26 +69,73 @@ export const projectsData: Project[] = [
     ]
   },
   {
+    id: "correction-facteur-puissance",
+    title: "Système de correction du facteur de puissance",
+    tech: "Arduino / ESP32, PZEM-004T, Contacteurs, Batteries de condensateurs",
+    platform: "Système Embarqué",
+    status: "Projet finalisé",
+    desc: "Compensateur automatique à gradins détectant l'énergie réactive via PZEM-004T pour enclencher les batteries de condensateurs.",
+    fullDesc: "Système embarqué de régulation automatique du facteur de puissance (cos φ) fonctionnant par gradins. Le module de mesure PZEM-004T analyse en continu la puissance active, la puissance réactive et le déphasage sur l'installation. Dès qu'une forte consommation d'énergie réactive est détectée (charges inductives telles que des moteurs), le microcontrôleur commande les relais et contacteurs de puissance pour enclencher progressivement les batteries de condensateurs nécessaires à la compensation.",
+    advantages: [
+      "Suppression des pénalités liées à la surconsommation d'énergie réactive sur la facture électrique",
+      "Réduction des chutes de tension et des pertes par effet Joule dans les câbles et équipements",
+      "Amélioration du rendement énergétique global et libération de puissance utile sur l'installation",
+      "Compensation dynamique et autonome par gradins de condensateurs sans intervention manuelle"
+    ],
+    image: "/assets/aistudio/hkjkjj_02854382.jpg",
+    gallery: [
+      "/assets/aistudio/hkjkjj_02854382.jpg",
+      "/assets/aistudio/ff_1bc4c530.jpg"
+    ],
+    galleryItems: [
+      {
+        url: "/assets/aistudio/hkjkjj_02854382.jpg",
+        title: "Test en charge (moteur & lampe) : coffret à 3 gradins, contacteurs, relais, PZEM-004T et condensateurs",
+        category: "hardware"
+      },
+      {
+        url: "/assets/aistudio/ff_1bc4c530.jpg",
+        title: "Vue d'ensemble du banc d'essai : régulateur automatique et batteries de condensateurs",
+        category: "hardware"
+      }
+    ]
+  },
+  {
     id: "architopo",
     title: "Architopo — Logiciel d'Architecture & Plans",
     tech: "Logiciel Web & Desktop, CAO 2D/3D, Topographie",
     platform: "Logiciel",
-    status: "Prototype partiel (Privé)",
+    status: "Prototype partiel",
     isPrivate: true,
     link: "https://github.com/chadest/architopo",
     desc: "Logiciel professionnel de création de plans de maison, d'architecture et de projets de rénovation.",
     fullDesc: "Architopo est une solution logicielle dédiée à la conception architecturale, la génération de plans de maison et l'aménagement de projets de rénovation. Le logiciel intègre des outils de dessin technique assisté par ordinateur (CAO 2D/3D), le partitionnement intelligent des pièces, le calcul automatique des métrés et des surfaces habitables, ainsi que la prise en compte des contraintes topographiques de terrain. (Projet sous code source propriétaire / Dépôt GitHub privé).",
-    image: architopoCover,
-    gallery: [architopoCover, architopoPlan],
+    image: "/assets/aistudio/Capture_d__cran_2026-11-13_174750_5258454a.png",
+    gallery: [
+      "/assets/aistudio/Capture_d__cran_2026-11-13_174750_5258454a.png",
+      "/assets/aistudio/Capture_d__cran_2026-11-13_174706_d0a1a823.png",
+      "/assets/aistudio/Capture_d__cran_2026-11-13_174906_f38ee0cc.png",
+      "/assets/aistudio/Capture_d__cran_2026-11-13_174838_cf2a3cb5.png"
+    ],
     galleryItems: [
       {
-        url: architopoCover,
-        title: "Modélisation architecturale 3D & rendu d'habitat",
+        url: "/assets/aistudio/Capture_d__cran_2026-11-13_174750_5258454a.png",
+        title: "Vue 3D : Modélisation de charpente, toiture à 2 versants & calcul de surface",
         category: "web"
       },
       {
-        url: architopoPlan,
-        title: "Élaboration de plans de masse et coupes techniques",
+        url: "/assets/aistudio/Capture_d__cran_2026-11-13_174706_d0a1a823.png",
+        title: "Éditeur CAO 2D : Plan coté des pièces, bibliothèque mobilier & inspecteur de propriétés",
+        category: "web"
+      },
+      {
+        url: "/assets/aistudio/Capture_d__cran_2026-11-13_174906_f38ee0cc.png",
+        title: "Tableau de bord ArchiTopo : Gestion des plans résidentiels et plans de masse",
+        category: "web"
+      },
+      {
+        url: "/assets/aistudio/Capture_d__cran_2026-11-13_174838_cf2a3cb5.png",
+        title: "Interface mobile : Consultation et édition de plan 2D coté sur smartphone",
         category: "web"
       }
     ]
@@ -121,7 +172,7 @@ export const projectsData: Project[] = [
     title: "FacialEmotion — Détection d'Émotions & AR Facial",
     tech: "Kotlin, Android, Jetpack Compose, CameraX, MediaPipe",
     platform: "Android",
-    status: "Prototype partiel (Android)",
+    status: "Prototype partiel",
     link: "https://github.com/chadest/FacialEmotion",
     desc: "Application Android d'analyse faciale 3D temps réel à 60 FPS avec 52 blendshapes et réalité augmentée.",
     fullDesc: "Application mobile Android moderne construite avec Jetpack Compose, CameraX et Google MediaPipe Face Landmarker. Elle applique un maillage facial géométrique 3D en réalité augmentée (478 repères) à 60 FPS sur l'appareil. Le système classifie les expressions et émotions faciales en temps réel via 52 blendshapes et diffuse des réactions interactives flottantes à l'écran.",
@@ -149,7 +200,7 @@ export const projectsData: Project[] = [
     galleryItems: [
       {
         url: morsignCover,
-        title: "Supervision des signaux audio et trains d'impulsions Morse",
+        title: "Table de correspondance du Code Morse International",
         category: "web"
       },
       {
@@ -203,17 +254,23 @@ export const projectsData: Project[] = [
     desc: "Monitoring climatique et suivi météo connecté en temps réel.",
     fullDesc: "Station météorologique connectée utilisant des capteurs d'ambiance (DHT11 / DHT22) pour mesurer température, humidité et point de rosée. Les données sont télétransmises vers une interface mobile permettant un suivi précis et l'historisation des relevés climatiques.",
     image: stationMeteoImg,
-    gallery: [stationMeteoImg]
-  },
-  {
-    id: "culture-adjagbe",
-    title: "Culture Adjagbe App",
-    tech: "React, Mobile, Sauvegarde du Patrimoine",
-    platform: "Android",
-    status: "En développement",
-    desc: "Application interactive dédiée à la valorisation de la culture Adjagbe.",
-    fullDesc: "Application mobile et web conçue pour préserver et valoriser le patrimoine culturel et linguistique Adjagbe. Elle intègre un lexique interactif, des récits audio-guidés et des modules d'apprentissage linguistique avec une interface utilisateur fluide et accessible.",
-    image: adjagbeImg,
-    gallery: [adjagbeImg]
+    gallery: [stationMeteoImg, stationMeteoUI, stationMeteoHardware],
+    galleryItems: [
+      {
+        url: stationMeteoUI,
+        title: "Interface de monitoring : Température (33.7 °C), Humidité (57 %) & Télémétrie 24h",
+        category: "web"
+      },
+      {
+        url: stationMeteoHardware,
+        title: "Montage prototype : ESP32, capteur DHT11 et afficheur LCD (Température & Humidité)",
+        category: "hardware"
+      },
+      {
+        url: stationMeteoImg,
+        title: "Suivi météorologique et relevés climatiques connectés",
+        category: "all"
+      }
+    ]
   }
 ];
